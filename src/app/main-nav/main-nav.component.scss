@@ -1,0 +1,94 @@
+app-main-nav {
+  .nav-holder {
+    width: 100%;
+    background: rgba($color-white, 0.5);
+    border-bottom: 1px solid $color-black;
+    margin-top: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    -webkit-transition: margin-top .5s;
+    transition: margin-top .5s;
+
+    &.hideMenu {
+      margin-top: -55px;
+
+      .nav-toggle-button {
+        top: 10px;
+      }
+    }
+
+    .nav-toggle-button {
+      position: fixed;
+      top: 60px;
+      left: 10px;
+      opacity: 0.5;
+      z-index: 9999;
+      -webkit-transition: top .5s;
+      transition: top .5s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    .chapterDetailsHolder {
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      top: 5px;
+      left: 0;
+      z-index: -1;
+
+      &.collapse {
+        width: 10%;
+      }
+    }
+  }
+
+  .main-nav {
+    margin-top: 10px;
+
+    li:first-child button {
+      margin-left: 10px;
+    }
+  }
+
+  .bookmark-nav-holder {
+    display: inline-block;
+    text-align: right;
+    margin-right: 10px;
+
+    @media (max-width: $breakpoint-x-small) {
+      min-width: 100px;
+    }
+
+    .fa-bookmark {
+      -webkit-text-fill-color: $color-white;
+      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-color: $milano-red;
+    }
+  }
+
+  .chapterDetails {
+    display: inline-block;
+  }
+
+  .chapterOverlay {
+    position: fixed;
+    top: 50%;
+    color: $color-white;
+    padding: 6px 12px;
+    background: rgba($color-black, 0.6);
+    border: none;
+  }
+
+  .chapterNext {
+    right: 0;
+  }
+
+  .chapterPrev {
+    left: 0;
+  }
+}

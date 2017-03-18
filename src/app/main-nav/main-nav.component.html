@@ -1,0 +1,19 @@
+<section class="container-fluid nav-holder">
+  <article class="row">
+    <nav class="col-md-12 main-nav">
+      <ul class="list-unstyled list-inline">
+        <li *ngIf="!hideMenu">
+          <button class="btn btn-primary" title="Recommended" routerLink="/"><i class="fa fa-diamond"></i> <span class="hidden-xs">Recommended</span></button>
+        </li>
+        <li *ngIf="!hideMenu">
+          <button class="btn btn-primary" title="All Titles" routerLink="/all"><i class="fa fa-list-alt"></i> <span class="hidden-xs">All Titles</span></button>
+        </li>
+        <li *ngIf="!hideMenu">
+          <button class="btn btn-primary" title="Night Mode" (click)="setNightTime()">
+            <i class="fa fa-moon-o"></i>
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </article>
+</section>

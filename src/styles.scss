@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+@import "app/theme/settings";
+@import "app/theme/colors";
+@import "app/theme/typography";
+@import "app/theme/buttons";
+@import "app/theme/modules/night-time";
+@import "app/theme/modules/manga-listings";
+@import "app/app.component";
+@import "app/main-nav/main-nav.component";
+@import "app/manga-viewer/manga-viewer.component";

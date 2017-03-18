@@ -1,0 +1,38 @@
+<section class="mangaTitle details container-fluid" *ngIf="detailsLoaded">
+  <article class="row">
+    <div class="col-md-3 col-sm-3 col-xs-12 mainImage">
+      <img [src]="details.cover" class="img-responsive center-block" />
+    </div>
+    <div class="col-md-9 col-sm-9 col-xs-12">
+      <h2 [innerHTML]="details.name"></h2>
+      <nav class="form-inline">
+        <label for="chapterSelect">Chapter: </label>
+        <select id="chapterSelect" class="form-control" [(ngModel)]="details.chapterSelect">
+          <option *ngFor="let chapter of details.chapters; let i = index" [value]="i">{{ i }} | {{ chapter.name }}</option>
+        </select>
+        <button class="btn btn-primary" (click)="getMangaChapter(details, details.chapterSelect)"><i class="fa fa-chevron-right"></i></button>
+      </nav>
+      <div class="col-md-8 col-sm-8 mangaDescription">
+        <p [innerHTML]="details.info"></p>
+        <h3>Genres:</h3>
+        <ul class="list-unstyled list-inline">
+          <li *ngFor="let genre of details.genres"><button class="btn btn-primary">{{ genre }}</button></li>
+        </ul>
+      </div>
+      <div class="col-md-4 col-sm-4 details">
+        <h3>
+          <strong>Status:</strong> <span class="status" [innerHTML]="details.status"></span>
+        </h3>
+        <p *ngIf="details.yearOfRelease">
+          <strong>Date Released:</strong> <span [innerHTML]="details.yearOfRelease"></span>
+        </p>
+        <p *ngIf="details.author.length > 0">
+          <strong>Author:</strong> <span *ngFor="let author of details.author">{{ author }}</span>
+        </p>
+        <p *ngIf="details.artist.length > 0">
+          <strong>Artist:</strong> <span *ngFor="let artist of details.artist">{{ artist }}</span>
+        </p>
+      </div>
+    </div>
+  </article>
+</section>

@@ -4,15 +4,27 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RecommendedComponent } from './recommended/recommended.component';
+import { AllTitlesComponent } from './all-titles/all-titles.component';
+import { MangaViewerComponent } from './manga-viewer/manga-viewer.component';
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { MangaDetailsComponent } from './manga-details/manga-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RecommendedComponent,
+    AllTitlesComponent,
+    MangaViewerComponent,
+    MainNavComponent,
+    MangaDetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
