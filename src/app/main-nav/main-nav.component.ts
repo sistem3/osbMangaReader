@@ -37,7 +37,7 @@ export class MainNavComponent implements OnInit {
     //console.log(section);
     let isReadingCheck = section.slice(0,9);
     if (isReadingCheck == '/chapter/') {
-      console.log('Is reading');
+      //console.log('Is reading');
       this.hideMenu = true;
       this.section = 'chapter';
       this.toggleMenu();

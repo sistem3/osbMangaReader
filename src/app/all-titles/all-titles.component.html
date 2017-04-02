@@ -8,13 +8,13 @@
           <p [innerHTML]="manga.info" class="hidden-xs"></p>
           <small class="status"><strong>Status:</strong> {{ manga.status }}</small>
           <nav>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" routerLink="/details/{{manga.href}}">
               <i class="fa fa-info-circle"></i> Manga Info
             </button>
-            <button class="btn btn-primary">
-              <i class="fa"></i> Add to favourites
+            <button class="btn btn-primary" (click)="addFavourite(manga)">
+              <i class="fa" [ngClass]="{'fa-heart': checkFavourite(manga), 'fa-heart-o': !checkFavourite(manga)}"></i> Add to favourites
             </button>
-            <button class="btn btn-primary">
+            <button class="btn btn-primary" routerLink="/chapter/{{manga.href}}/1">
               <i class="fa fa-book"></i> Start Reading
             </button>
           </nav>
@@ -25,13 +25,13 @@
   <ul *ngIf="!listStyle" class="list-unstyled thumbGrid">
     <li *ngFor="let manga of allTitlesListing">
       <nav>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" routerLink="/details/{{manga.href}}">
           <i class="fa fa-info-circle"></i>
         </button>
-        <button class="btn btn-primary">
-          <i class="fa"></i>
+        <button class="btn btn-primary" (click)="addFavourite(manga)">
+          <i class="fa" [ngClass]="{'fa-heart': checkFavourite(manga), 'fa-heart-o': !checkFavourite(manga)}"></i>
         </button>
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" routerLink="/chapter/{{manga.href}}/1">
           <i class="fa fa-book"></i>
         </button>
       </nav>

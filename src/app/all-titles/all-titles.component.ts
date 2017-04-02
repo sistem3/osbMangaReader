@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AllTitlesService } from './all-titles.service';
 import { MangaDetailsService } from '../manga-details/manga-details.service';
+import { UserSettingsService } from '../settings/user-settings.service';
 
 @Component({
   selector: 'app-all-titles',
   templateUrl: './all-titles.component.html',
-  providers: [ AllTitlesService, MangaDetailsService ]
+  providers: [ AllTitlesService, MangaDetailsService, UserSettingsService ]
 })
 export class AllTitlesComponent implements OnInit {
 
@@ -14,6 +15,7 @@ export class AllTitlesComponent implements OnInit {
   pageLength = 0;
 
   constructor(private allTitles: AllTitlesService,
+              private userSettings: UserSettingsService,
               private mangaDetails: MangaDetailsService) { }
 
   ngOnInit() {
@@ -43,6 +45,16 @@ export class AllTitlesComponent implements OnInit {
     firstViewList.forEach((item) => {
       this.getMangaDetails(item.mangaId);
     });
+  }
+
+  addFavourite(manga) {
+    //console.log(manga);
+    console.log('Add to favourite');
+    this.userSettings.addFavourite(manga);
+  }
+
+  checkFavourite(manga) {
+    return this.userSettings.checkFavourites(manga);
   }
 
 }
