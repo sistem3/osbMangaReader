@@ -1,0 +1,45 @@
+.mangaTitle {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $silver-chalice;
+
+  &.mangaDetails {
+    margin-top: 72px;
+  }
+
+  h2 {
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+
+  nav {
+    margin-bottom: 10px;
+  }
+
+  .btn {
+    margin: 0 10px 10px 0;
+  }
+
+  .form-inline .btn {
+    margin: 0 0 3px 10px;
+  }
+
+  .mangaDescription {
+    padding-left: 0;
+  }
+
+  .mangaDetails {
+    h3 {
+      margin-top: 0;
+    }
+  }
+
+  .mainImage {
+    padding-right: 0;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}

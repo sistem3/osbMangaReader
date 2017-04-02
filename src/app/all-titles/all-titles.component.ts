@@ -11,6 +11,7 @@ export class AllTitlesComponent implements OnInit {
 
   errorMessage = '';
   allTitlesListing = [];
+  pageLength = 0;
 
   constructor(private allTitles: AllTitlesService,
               private mangaDetails: MangaDetailsService) { }
@@ -26,7 +27,7 @@ export class AllTitlesComponent implements OnInit {
   }
 
   getMangaDetails(manga) {
-    console.log(manga);
+    //console.log(manga);
     this.mangaDetails.getDetails(manga).subscribe(
       manga => this.setMangaDetails(manga),
       error =>  this.errorMessage = <any>error);

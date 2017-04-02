@@ -1,18 +1,18 @@
-<section class="mangaTitle details container-fluid" *ngIf="detailsLoaded">
+<section class="mangaTitle mangaDetails container-fluid" *ngIf="detailsLoaded">
   <article class="row">
     <div class="col-md-3 col-sm-3 col-xs-12 mainImage">
       <img [src]="details.cover" class="img-responsive center-block" />
     </div>
     <div class="col-md-9 col-sm-9 col-xs-12">
-      <h2 [innerHTML]="details.name"></h2>
-      <nav class="form-inline">
-        <label for="chapterSelect">Chapter: </label>
-        <select id="chapterSelect" class="form-control" [(ngModel)]="details.chapterSelect">
-          <option *ngFor="let chapter of details.chapters; let i = index" [value]="i">{{ i }} | {{ chapter.name }}</option>
-        </select>
-        <button class="btn btn-primary" (click)="getMangaChapter(details, details.chapterSelect)"><i class="fa fa-chevron-right"></i></button>
-      </nav>
       <div class="col-md-8 col-sm-8 mangaDescription">
+        <h2 [innerHTML]="details.name"></h2>
+        <nav class="form-inline">
+          <label for="chapterSelect">Chapter: </label>
+          <select id="chapterSelect" class="form-control" [(ngModel)]="details.chapterSelect">
+            <option *ngFor="let chapter of details.chapters; let i = index" [value]="i">{{ i }} | {{ chapter.name }}</option>
+          </select>
+          <button class="btn btn-primary"><i class="fa fa-chevron-right"></i></button>
+        </nav>
         <p [innerHTML]="details.info"></p>
         <h3>Genres:</h3>
         <ul class="list-unstyled list-inline">
