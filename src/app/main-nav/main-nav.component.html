@@ -1,19 +1,46 @@
-<section class="container-fluid nav-holder">
+<section class="container-fluid nav-holder" [ngClass]="{'hideMenu' : !showMenu }">
   <article class="row">
     <nav class="col-md-12 main-nav">
       <ul class="list-unstyled list-inline">
         <li *ngIf="!hideMenu">
-          <button class="btn btn-primary" title="Recommended" routerLink="/"><i class="fa fa-diamond"></i> <span class="hidden-xs">Recommended</span></button>
+          <button class="btn btn-primary" title="Recommended" routerLink="/" [ngClass]="{'active': section == 'recommended'}"><i class="fa fa-diamond"></i> <span class="hidden-xs">Recommended</span></button>
         </li>
         <li *ngIf="!hideMenu">
-          <button class="btn btn-primary" title="All Titles" routerLink="/all"><i class="fa fa-list-alt"></i> <span class="hidden-xs">All Titles</span></button>
+          <button class="btn btn-primary" title="All Titles" routerLink="/all" [ngClass]="{'active': section == 'all'}"><i class="fa fa-list-alt"></i> <span class="hidden-xs">All Titles</span></button>
         </li>
         <li *ngIf="!hideMenu">
           <button class="btn btn-primary" title="Night Mode" (click)="setNightTime()">
             <i class="fa fa-moon-o"></i>
           </button>
         </li>
+        <li *ngIf="!hideMenu && section === 'recommended' || section === 'all-titles'">
+          <button class="btn btn-primary" (click)="listStyle = !listStyle"><i class="fa" [ngClass]="{'fa-list-ol': !listStyle, 'fa-th': listStyle}"></i></button>
+        </li>
+        <li>
+          <button class="btn btn-primary" (click)="hideMenu = !hideMenu"><i class="fa fa-bars"></i> <i class="fa fa-chevron-left" [ngClass]="{'fa-chevron-left': !hideMenu, 'fa-chevron-right': hideMenu}"></i></button>
+        </li>
+        <li *ngIf="!isLoading && section === 'chapter'">
+          <button class="btn btn-primary nav-toggle-button" title="Show/Hide Menu" (click)="toggleMenu()">
+            <i class="fa" [ngClass]="{'fa-chevron-down': !showMenu, 'fa-chevron-up': showMenu}"></i>
+          </button>
+          <button *ngIf="prevChapterShow" class="chapterOverlay chapterPrev">
+            <i class="fa fa-chevron-left"></i>
+            <span>Prev Chapter</span>
+          </button>
+          <button *ngIf="nextChapterShow" class="chapterOverlay chapterNext">
+            <span>Next Chapter</span>
+            <i class="fa fa-chevron-right"></i>
+          </button>
+        </li>
+        <li *ngIf="!isLoading && section === 'chapter' && hideMenu" class="chapterDetailsHolder">
+          <div class="chapterDetails">
+            <strong>Chapter</strong>: {{chapter}}/<span id="navChaptersTotal">{{chaptersTotal}}</span>
+            <strong>Page</strong>:
+            <span id="navPageNumber">{{pageNumber}}</span>/<span id="navPagesTotalNumber">{{chapterPagesTotal}}</span>
+          </div>
+        </li>
       </ul>
     </nav>
   </article>
+  <!--<h1 [innerHTML]="section"></h1>-->
 </section>
