@@ -1,3 +1,8 @@
-<p>
-  manga-viewer works!
-</p>
+<section *ngIf="chapterLoaded" class="mangaViewer swiper-container">
+  <div class="swiper-wrapper">
+    <div *ngFor="let page of chapter.pages" class="swiper-slide mangaPage">
+      <img [src]="page.url" class="manga-page-iamge" [attr.data-zoom]="page.url" />
+    </div>
+  </div>
+  <div id="imageMagnifier"></div>
+</section>
