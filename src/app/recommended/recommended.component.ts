@@ -20,7 +20,6 @@ export class RecommendedComponent implements OnInit {
               private recommended:RecommendedService) { }
 
   ngOnInit() {
-    //console.log('Starting up');
     this.mangaDetails.getCachedDetails();
     this.recommended.getRecommended().subscribe(
       recommended => this.setRecommended(recommended),
@@ -50,8 +49,6 @@ export class RecommendedComponent implements OnInit {
   }
 
   addFavourite(manga) {
-    //console.log(manga);
-    console.log('Add to favourite');
     this.userSettings.addFavourite(manga);
   }
 

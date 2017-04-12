@@ -20,14 +20,12 @@ export class MangaDetailsComponent implements OnInit {
   }
 
   getMangaDetails(manga) {
-    console.log(manga);
     this.mangaDetails.getDetails(manga.title).subscribe(
       manga => this.setMangaDetails(manga),
       error =>  this.errorMessage = <any>error);
   }
 
   setMangaDetails(manga) {
-    console.log(manga);
     this.details = manga;
     this.detailsLoaded = true;
   }

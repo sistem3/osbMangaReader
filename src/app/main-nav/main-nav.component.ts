@@ -15,8 +15,6 @@ export class MainNavComponent implements OnInit {
   isLoading:boolean = false;
   listStyle:boolean = false;
   chapter: number = 1;
-  chaptersTotal: number = 0;
-  pageNumber: number = 1;
 
   constructor(private nightTime: NightTimeService,
               private router: Router) {}
@@ -34,10 +32,8 @@ export class MainNavComponent implements OnInit {
   }
 
   checkSection(section) {
-    //console.log(section);
     let isReadingCheck = section.slice(0,9);
     if (isReadingCheck == '/chapter/') {
-      //console.log('Is reading');
       this.hideMenu = true;
       this.section = 'chapter';
       this.toggleMenu();
