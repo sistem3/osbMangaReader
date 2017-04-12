@@ -21,6 +21,9 @@
         </div>
       </article>
     </li>
+    <li id="paginationLoader" class="loader">
+      <i class="fa fa-spinner fa-spin"></i>
+    </li>
   </ul>
   <ul *ngIf="!listStyle" class="list-unstyled thumbGrid">
     <li *ngFor="let manga of allTitlesListing">
@@ -37,6 +40,9 @@
       </nav>
       <img [src]="manga.cover" alt="{{ manga.name }}" title="{{ manga.name }}" />
       <div class="title">{{ manga.name }}</div>
+    </li>
+    <li id="paginationLoaderList" class="loader">
+      <i class="fa fa-spinner fa-spin"></i>
     </li>
   </ul>
 </section>
