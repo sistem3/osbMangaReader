@@ -1,4 +1,8 @@
 <section *ngIf="chapterLoaded" class="mangaViewer swiper-container">
+  <nav>
+    <button *ngIf="nextChapterShow" class="chapterOverlay chapterNext" (click)="goToChapter('forward')">Next  Chapter</button>
+    <button *ngIf="prevChapterShow" class="chapterOverlay chapterPrev" (click)="goToChapter('backward')">Previous Chapter</button>
+  </nav>
   <div class="swiper-wrapper">
     <div *ngFor="let page of chapter.pages" class="swiper-slide mangaPage">
       <img [src]="page.url" class="manga-page-iamge" [attr.data-zoom]="page.url" />
@@ -6,3 +10,4 @@
   </div>
   <div id="imageMagnifier"></div>
 </section>
+<div class="loadingIcon" *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i> Loading...</div>

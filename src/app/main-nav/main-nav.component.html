@@ -34,7 +34,7 @@
         </li>
         <li *ngIf="!isLoading && section === 'chapter' && hideMenu" class="chapterDetailsHolder">
           <div class="chapterDetails">
-            <strong>Chapter</strong>: {{chapter}}/<span id="navChaptersTotal"></span>
+            <strong>Chapter</strong>: <span id="navChapter"></span>/<span id="navChaptersTotal"></span>
             <strong>Page</strong>:
             <span id="navPageNumber">{{pageNumber}}</span>/<span id="navPagesTotalNumber"></span>
           </div>

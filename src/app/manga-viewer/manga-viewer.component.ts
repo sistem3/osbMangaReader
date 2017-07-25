@@ -4,6 +4,7 @@ import { MangaViewerService } from './manga-viewer.service';
 import { MangaDetailsService } from '../manga-details/manga-details.service';
 
 declare let Swiper;
+let pageScene;
 
 @Component({
   selector: 'app-manga-viewer',
@@ -12,14 +13,18 @@ declare let Swiper;
 })
 export class MangaViewerComponent implements OnInit {
 
-  chapter = {};
+  chapter: any;
   chapterNum:number = 1;
+  nextChapter:number;
+  prevChapter:number;
   mangaTitle:string = '';
   errorMessage:string = '';
   pageNumber:number = 1;
   totalPages: number = 0;
   chapterLoaded = false;
-  chapterView = {};
+  isLoading = true;
+  nextChapterShow = false;
+  prevChapterShow = false;
   sliderSettings = {
     initialSlide: 0,
     slidesPerView: 1,
@@ -36,16 +41,23 @@ export class MangaViewerComponent implements OnInit {
               private mangaViewer: MangaViewerService) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.route.params.subscribe((details) => this.getMangaChapter(details));
   }
 
   onSwiperInit(swiper) {
-    //console.log(swiper);
+    // console.log(swiper);
+    this.nextChapterShow = this.pageNumber == this.totalPages;
+    this.prevChapterShow = this.pageNumber == 1 && this.chapterNum > 1;
+    swiper.enableKeyboardControl();
   }
 
   onSwipePage(swiper) {
     this.pageNumber = swiper.activeIndex + 1;
     this.updateNavPage();
+
+    this.nextChapterShow = this.pageNumber == this.totalPages;
+    this.prevChapterShow = this.pageNumber == 1 && this.chapterNum > 1;
   }
 
   updateNavPage() {
@@ -53,7 +65,7 @@ export class MangaViewerComponent implements OnInit {
   }
 
   updateNavChapter() {
-    document.getElementById('navChaptersTotal').innerText = this.chapterNum.toString();
+    document.getElementById('navChapter').innerText = this.chapterNum.toString();
   }
 
   updateNavPageTotal() {
@@ -61,12 +73,7 @@ export class MangaViewerComponent implements OnInit {
   }
 
   setChaptersLength(chapters) {
-    document.getElementById('navChaptersTotal').innerText = chapters.length;
-  }
-
-  goToNextChapter() {
-    this.chapterNum++;
-    this.router.navigate(['/chapter', this.mangaTitle, this.chapterNum]);
+    document.getElementById('navChaptersTotal').innerText = chapters.length.toString();
   }
 
   getMangaDetails(manga) {
@@ -75,10 +82,21 @@ export class MangaViewerComponent implements OnInit {
       error =>  this.errorMessage = <any>error);
   }
 
+  goToChapter(direction) {
+    this.isLoading = true;
+    if (direction === 'forward') {
+      this.router.navigate(['/chapter', this.mangaTitle, this.nextChapter]);
+    } else if (direction === 'backward') {
+      this.router.navigate(['/chapter', this.mangaTitle, this.prevChapter]);
+    }
+  }
+
   getMangaChapter(details) {
+    this.isLoading = true;
     this.mangaTitle = details.title;
-    this.chapterNum = details.number;
-    this.getMangaDetails(details.title);
+    this.chapterNum = parseInt(details.number);
+    this.nextChapter = this.chapterNum + 1;
+    this.prevChapter = this.chapterNum - 1;
     this.mangaViewer.getChapter(details.title, details.number).subscribe(
       chapter => this.setMangaChapter(chapter),
       error =>  this.errorMessage = <any>error);
@@ -90,10 +108,17 @@ export class MangaViewerComponent implements OnInit {
     this.totalPages = chapter.pages.length;
     this.updateNavChapter();
     this.updateNavPageTotal();
+    this.getMangaDetails(this.mangaTitle);
+    this.isLoading = false;
+
+    if (pageScene) {
+      pageScene.destroy();
+      pageScene = null;
+    }
 
     setTimeout(() => {
       document.querySelector('.swiper-container').setAttribute('style','height:' + window.innerHeight + 'px;');
-      this.chapterView = new Swiper(document.querySelector('.swiper-container'), this.sliderSettings);
+      pageScene = new Swiper(document.querySelector('.swiper-container'), this.sliderSettings);
     }, 500);
   }
 
