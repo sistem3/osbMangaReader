@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { NightTimeService } from '../night-time/night-time.service';
 
 @Component({
@@ -15,13 +15,14 @@ export class MainNavComponent implements OnInit {
   isLoading:boolean = false;
   listStyle:boolean = false;
   chapter: number = 1;
+  pageNumber: number = 1;
 
   constructor(private nightTime: NightTimeService,
               private router: Router) {}
 
   ngOnInit() {
     this.router.events.subscribe((event) => {
-      if(event.url) {
+      if (event instanceof NavigationEnd ) {
         this.checkSection(event.url);
       }
     });
