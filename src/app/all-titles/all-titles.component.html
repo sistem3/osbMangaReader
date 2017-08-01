@@ -1,6 +1,6 @@
-<section class="mangaList">
-  <ul *ngIf="listStyle" class="list-unstyled listGrid">
-    <li *ngFor="let manga of allTitlesListing" class="mangaTitle">
+<section class="mangaList container-fluid">
+  <ul *ngIf="listStyle" class="list-unstyled listGrid row">
+    <li *ngFor="let manga of allTitlesListing" class="mangaTitle col-md-12">
       <article class="container-fluid">
         <div class="col-md-2 col-sm-3 col-xs-4 mainImage"><img [src]="manga.cover" alt="{{ manga.name }}" title="{{ manga.name }}" class="img-responsive center-block" /></div>
         <div class="col-md-10 col-sm-9 col-xs-8">
@@ -21,12 +21,12 @@
         </div>
       </article>
     </li>
-    <li id="paginationLoader" class="loader">
+    <li id="paginationLoader" class="loader col-md-12">
       <i class="fa fa-spinner fa-spin"></i>
     </li>
   </ul>
-  <ul *ngIf="!listStyle" class="list-unstyled thumbGrid">
-    <li *ngFor="let manga of allTitlesListing">
+  <ul *ngIf="!listStyle" class="list-unstyled thumbGrid row">
+    <li *ngFor="let manga of allTitlesListing" class="col-md-3 col-sm-6">
       <nav>
         <button class="btn btn-primary" routerLink="/details/{{manga.href}}">
           <i class="fa fa-info-circle"></i>
@@ -41,7 +41,7 @@
       <img [src]="manga.cover" alt="{{ manga.name }}" title="{{ manga.name }}" />
       <div class="title">{{ manga.name }}</div>
     </li>
-    <li id="paginationLoaderList" class="loader">
+    <li id="paginationLoaderList" class="loader col-md-3">
       <i class="fa fa-spinner fa-spin"></i>
     </li>
   </ul>

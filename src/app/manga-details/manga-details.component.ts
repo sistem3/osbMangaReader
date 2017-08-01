@@ -9,13 +9,15 @@ import { MangaDetailsService } from './manga-details.service';
 })
 export class MangaDetailsComponent implements OnInit {
 
-  errorMessage = '';
-  details = {};
-  detailsLoaded:boolean = false;
+  errorMessage: any;
+  details: any;
+  detailsLoaded: boolean;
 
   constructor(private route: ActivatedRoute, private mangaDetails: MangaDetailsService) { }
 
   ngOnInit() {
+    this.details = {};
+    this.detailsLoaded = false;
     this.route.params.subscribe((manga) => this.getMangaDetails(manga));
   }
 

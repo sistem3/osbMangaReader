@@ -1,25 +1,25 @@
 <section class="container-fluid nav-holder" [ngClass]="{'hideMenu' : !showMenu }">
   <article class="row">
     <nav class="col-md-12 main-nav">
-      <ul class="list-unstyled list-inline">
-        <li *ngIf="!hideMenu">
+      <ul class="list-inline">
+        <li *ngIf="!hideMenu" class="list-inline-item">
           <button class="btn btn-primary" title="Recommended" routerLink="/" [ngClass]="{'active': section == 'recommended'}"><i class="fa fa-diamond"></i> <span class="hidden-xs">Recommended</span></button>
         </li>
-        <li *ngIf="!hideMenu">
+        <li *ngIf="!hideMenu" class="list-inline-item">
           <button class="btn btn-primary" title="All Titles" routerLink="/all" [ngClass]="{'active': section == 'all'}"><i class="fa fa-list-alt"></i> <span class="hidden-xs">All Titles</span></button>
         </li>
-        <li *ngIf="!hideMenu">
+        <li *ngIf="!hideMenu" class="list-inline-item">
           <button class="btn btn-primary" title="Night Mode" (click)="setNightTime()">
             <i class="fa fa-moon-o"></i>
           </button>
         </li>
-        <li *ngIf="!hideMenu && section === 'recommended' || section === 'all-titles'">
+        <li *ngIf="!hideMenu && section === 'recommended' || section === 'all-titles'" class="list-inline-item">
           <button class="btn btn-primary" (click)="listStyle = !listStyle"><i class="fa" [ngClass]="{'fa-list-ol': !listStyle, 'fa-th': listStyle}"></i></button>
         </li>
-        <li>
+        <li class="list-inline-item">
           <button class="btn btn-primary" (click)="hideMenu = !hideMenu"><i class="fa fa-bars"></i> <i class="fa fa-chevron-left" [ngClass]="{'fa-chevron-left': !hideMenu, 'fa-chevron-right': hideMenu}"></i></button>
         </li>
-        <li *ngIf="!isLoading && section === 'chapter'">
+        <li *ngIf="!isLoading && section === 'chapter'" class="list-inline-item">
           <button class="btn btn-primary nav-toggle-button" title="Show/Hide Menu" (click)="toggleMenu()">
             <i class="fa" [ngClass]="{'fa-chevron-down': !showMenu, 'fa-chevron-up': showMenu}"></i>
           </button>
@@ -32,7 +32,7 @@
             <i class="fa fa-chevron-right"></i>
           </button>
         </li>
-        <li *ngIf="!isLoading && section === 'chapter' && hideMenu" class="chapterDetailsHolder">
+        <li *ngIf="!isLoading && section === 'chapter' && hideMenu" class="chapterDetailsHolder list-inline-item">
           <div class="chapterDetails">
             <strong>Chapter</strong>: <span id="navChapter"></span>/<span id="navChaptersTotal"></span>
             <strong>Page</strong>:

@@ -26,10 +26,10 @@
         <p *ngIf="details.yearOfRelease">
           <strong>Date Released:</strong> <span [innerHTML]="details.yearOfRelease"></span>
         </p>
-        <p *ngIf="details.author.length > 0">
+        <p *ngIf="details.author && details.author.length > 0">
           <strong>Author:</strong> <span *ngFor="let author of details.author">{{ author }}</span>
         </p>
-        <p *ngIf="details.artist.length > 0">
+        <p *ngIf="details.artist && details.artist.length > 0">
           <strong>Artist:</strong> <span *ngFor="let artist of details.artist">{{ artist }}</span>
         </p>
       </div>

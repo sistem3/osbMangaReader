@@ -1,5 +1,5 @@
 .mangaList {
-  margin-top: 52px;
+  margin-top: 64px;
 
   .mainImage {
     padding-left: 0;
@@ -8,31 +8,20 @@
   }
 
   .thumbGrid {
-    display: -webkit-flex;
-    display: flex;
-    -webkit-flex-direction: row;
-    flex-direction: row;
-
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-
     li {
       position: relative;
       background: $mine-shaft;
       box-sizing: border-box;
-      -webkit-flex: 1 1 25%;
-      flex: 1 1 25%;
       border-right: 1px solid $color-black;
       border-bottom: 1px solid $color-black;
+      padding-left: 0;
+      padding-right: 0;
 
       &:nth-child(4n+4) {
         border-right: none;
       }
 
       @media (max-width: $breakpoint-medium) {
-        -webkit-flex: 1 1 33.333%;
-        flex: 1 1 33.333%;
-
         &:nth-child(4n+4) {
           border-right: 1px solid $color-black;
         }
@@ -43,9 +32,6 @@
       }
 
       @media (max-width: $breakpoint-x-small) {
-        -webkit-flex: 1 1 50%;
-        flex: 1 1 50%;
-
         &:nth-child(4n+4) {
           border-right: 1px solid $color-black;
         }
