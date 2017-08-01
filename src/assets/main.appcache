@@ -1,0 +1,13 @@
+CACHE MANIFEST
+# 2017-07-29:v0.0.1
+
+# Explicitly cached entries
+../index.html
+
+# All other resources (e.g. sites) require the user to be online.
+NETWORK:
+*
+
+# Additional resources to cache
+CACHE:
+../index.html
