@@ -26,7 +26,7 @@
     </li>
   </ul>
   <ul *ngIf="!listStyle" class="list-unstyled thumbGrid row">
-    <li *ngFor="let manga of allTitlesListing" class="col-md-3 col-sm-6">
+    <li *ngFor="let manga of allTitlesListing" class="col-sm-4 col-md-3">
       <nav>
         <button class="btn btn-primary" routerLink="/details/{{manga.href}}">
           <i class="fa fa-info-circle"></i>
@@ -41,7 +41,7 @@
       <img [src]="manga.cover" alt="{{ manga.name }}" title="{{ manga.name }}" />
       <div class="title">{{ manga.name }}</div>
     </li>
-    <li id="paginationLoaderList" class="loader col-md-3">
+    <li id="paginationLoaderList" class="loader col-sm-4 col-md-3">
       <i class="fa fa-spinner fa-spin"></i>
     </li>
   </ul>

@@ -23,7 +23,7 @@
     </li>
   </ul>
   <ul *ngIf="!listStyle" class="list-unstyled thumbGrid row">
-    <li *ngFor="let manga of recommendedList" class="col-md-3 col-6-sm">
+    <li *ngFor="let manga of recommendedList" class="col-sm-4 col-md-3">
       <nav>
         <button class="btn btn-primary" routerLink="/details/{{manga.href}}">
           <i class="fa fa-info-circle"></i>
