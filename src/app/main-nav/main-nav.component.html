@@ -3,10 +3,10 @@
     <nav class="col-md-12 main-nav">
       <ul class="list-inline">
         <li *ngIf="!hideMenu" class="list-inline-item">
-          <button class="btn btn-primary" title="Recommended" routerLink="/" [ngClass]="{'active': section == 'recommended'}"><i class="fa fa-diamond"></i> <span class="hidden-xs">Recommended</span></button>
+          <button class="btn btn-primary" title="Recommended" routerLink="/" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><i class="fa fa-diamond"></i> <span class="hidden-xs">Recommended</span></button>
         </li>
         <li *ngIf="!hideMenu" class="list-inline-item">
-          <button class="btn btn-primary" title="All Titles" routerLink="/all" [ngClass]="{'active': section == 'all'}"><i class="fa fa-list-alt"></i> <span class="hidden-xs">All Titles</span></button>
+          <button class="btn btn-primary" title="All Titles" routerLink="/all" [routerLinkActive]="['active']"><i class="fa fa-list-alt"></i> <span class="hidden-xs">All Titles</span></button>
         </li>
         <li *ngIf="!hideMenu" class="list-inline-item">
           <button class="btn btn-primary" title="Night Mode" (click)="setNightTime()">
@@ -23,24 +23,14 @@
           <button class="btn btn-primary nav-toggle-button" title="Show/Hide Menu" (click)="toggleMenu()">
             <i class="fa" [ngClass]="{'fa-chevron-down': !showMenu, 'fa-chevron-up': showMenu}"></i>
           </button>
-          <button *ngIf="prevChapterShow" class="chapterOverlay chapterPrev">
-            <i class="fa fa-chevron-left"></i>
-            <span>Prev Chapter</span>
-          </button>
-          <button *ngIf="nextChapterShow" class="chapterOverlay chapterNext">
-            <span>Next Chapter</span>
-            <i class="fa fa-chevron-right"></i>
-          </button>
         </li>
         <li *ngIf="!isLoading && section === 'chapter' && hideMenu" class="chapterDetailsHolder list-inline-item">
           <div class="chapterDetails">
-            <strong>Chapter</strong>: <span id="navChapter"></span>/<span id="navChaptersTotal"></span>
-            <strong>Page</strong>:
-            <span id="navPageNumber">{{pageNumber}}</span>/<span id="navPagesTotalNumber"></span>
+            <strong>Chapter</strong>: {{chapterNumber}}/{{chapterTotalNumber}}
+            <strong>Page</strong>: {{pageNumber}}/{{pageTotalNumber}}
           </div>
         </li>
       </ul>
     </nav>
   </article>
-  <!--<h1 [innerHTML]="section"></h1>-->
 </section>

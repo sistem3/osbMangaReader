@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MangaViewerService } from './manga-viewer.service';
 import { MangaDetailsService } from '../manga-details/manga-details.service';
@@ -9,18 +9,22 @@ let pageScene;
 @Component({
   selector: 'app-manga-viewer',
   templateUrl: './manga-viewer.component.html',
-  providers: [ MangaViewerService, MangaDetailsService ]
+  providers: [ MangaDetailsService ]
 })
-export class MangaViewerComponent implements OnInit {
+export class MangaViewerComponent implements OnInit, OnDestroy {
 
   chapter: any;
   chapterNum:number = 1;
+  chapterTotal: number;
+
   nextChapter:number;
   prevChapter:number;
   mangaTitle:string = '';
   errorMessage:string = '';
+
   pageNumber:number = 1;
   totalPages: number = 0;
+
   chapterLoaded = false;
   isLoading = true;
   nextChapterShow = false;
@@ -45,8 +49,18 @@ export class MangaViewerComponent implements OnInit {
     this.route.params.subscribe((details) => this.getMangaChapter(details));
   }
 
+  ngOnDestroy() {
+    this.pageNumber = 1;
+    this.totalPages = 1;
+    this.chapterNum = 1;
+    this.chapterTotal = 1;
+    this.mangaViewer.updateViewerDetails('page', this.pageNumber);
+    this.mangaViewer.updateViewerDetails('pageTotal', this.totalPages);
+    this.mangaViewer.updateViewerDetails('chapter', this.chapterNum);
+    this.mangaViewer.updateViewerDetails('chapterTotal', this.chapterTotal);
+  }
+
   onSwiperInit(swiper) {
-    // console.log(swiper);
     this.nextChapterShow = this.pageNumber == this.totalPages;
     this.prevChapterShow = this.pageNumber == 1 && this.chapterNum > 1;
     swiper.enableKeyboardControl();
@@ -54,26 +68,14 @@ export class MangaViewerComponent implements OnInit {
 
   onSwipePage(swiper) {
     this.pageNumber = swiper.activeIndex + 1;
-    this.updateNavPage();
-
+    this.mangaViewer.updateViewerDetails('page', this.pageNumber);
     this.nextChapterShow = this.pageNumber == this.totalPages;
     this.prevChapterShow = this.pageNumber == 1 && this.chapterNum > 1;
   }
 
-  updateNavPage() {
-    document.getElementById('navPageNumber').innerText = this.pageNumber.toString();
-  }
-
-  updateNavChapter() {
-    document.getElementById('navChapter').innerText = this.chapterNum.toString();
-  }
-
-  updateNavPageTotal() {
-    document.getElementById('navPagesTotalNumber').innerText = this.totalPages.toString();
-  }
-
   setChaptersLength(chapters) {
-    document.getElementById('navChaptersTotal').innerText = chapters.length.toString();
+    this.chapterTotal = chapters.length;
+    this.mangaViewer.updateViewerDetails('chapterTotal', this.chapterTotal);
   }
 
   getMangaDetails(manga) {
@@ -95,6 +97,7 @@ export class MangaViewerComponent implements OnInit {
     this.isLoading = true;
     this.mangaTitle = details.title;
     this.chapterNum = parseInt(details.number);
+    this.mangaViewer.updateViewerDetails('chapter', this.chapterNum);
     this.nextChapter = this.chapterNum + 1;
     this.prevChapter = this.chapterNum - 1;
     this.mangaViewer.getChapter(details.title, details.number).subscribe(
@@ -106,8 +109,7 @@ export class MangaViewerComponent implements OnInit {
     this.chapter = chapter;
     this.chapterLoaded = true;
     this.totalPages = chapter.pages.length;
-    this.updateNavChapter();
-    this.updateNavPageTotal();
+    this.mangaViewer.updateViewerDetails('pageTotal', this.totalPages);
     this.getMangaDetails(this.mangaTitle);
     this.isLoading = false;
 
