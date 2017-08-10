@@ -11,7 +11,7 @@ import { MangaViewerComponent } from './manga-viewer/manga-viewer.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { MangaDetailsComponent } from './manga-details/manga-details.component';
 
-import { MangaViewerService } from './manga-viewer/manga-viewer.service';
+import { MainNavService } from './main-nav/main-nav.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { MangaViewerService } from './manga-viewer/manga-viewer.service';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [MangaViewerService],
+  providers: [MainNavService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

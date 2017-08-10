@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AllTitlesService } from './all-titles.service';
 import { MangaDetailsService } from '../manga-details/manga-details.service';
 import { UserSettingsService } from '../settings/user-settings.service';
+import { MainNavService } from '../main-nav/main-nav.service';
 
 declare let ScrollMagic;
 let pageController, pageScene, paginationType;
@@ -16,18 +17,28 @@ export class AllTitlesComponent implements OnInit, OnDestroy {
   errorMessage = '';
   allTitlesHolder = [];
   allTitlesListing = [];
-  listStyle = '';
-  pageLength = 20;
-  page = 1;
+  listStyle:boolean = false;
+  pageLength: number = 20;
+  page: number = 1;
   pageController: any;
   pageScene: any;
+  paginationType: string = '#paginationLoaderList';
 
   constructor(private allTitles: AllTitlesService,
               private userSettings: UserSettingsService,
+              private navService: MainNavService,
               private mangaDetails: MangaDetailsService) { }
 
   ngOnInit() {
     this.getAllTitles();
+    this.navService.listTypeStream$.subscribe(listType => {
+      this.listStyle = listType;
+      if (this.pageController != null) {
+        this.pageController.destroy();
+        this.pageController = null;
+        this.startPagination();
+      }
+    });
   }
 
   ngOnDestroy() {
@@ -49,7 +60,6 @@ export class AllTitlesComponent implements OnInit, OnDestroy {
   }
 
   getMangaDetails(manga) {
-    //console.log(manga);
     this.mangaDetails.getDetails(manga).subscribe(
       manga => this.setMangaDetails(manga),
       error =>  this.errorMessage = <any>error);
@@ -61,7 +71,7 @@ export class AllTitlesComponent implements OnInit, OnDestroy {
     nextViewList.forEach((item, index) => {
       this.getMangaDetails(item.mangaId);
       if (index + 1 == nextViewList.length) {
-        document.querySelector('#paginationLoaderList').classList.remove('active');
+        document.querySelector(this.paginationType).classList.remove('active');
       }
     });
   }
@@ -82,8 +92,6 @@ export class AllTitlesComponent implements OnInit, OnDestroy {
   }
 
   addFavourite(manga) {
-    //console.log(manga);
-    //console.log('Add to favourite');
     this.userSettings.addFavourite(manga);
   }
 
@@ -92,18 +100,17 @@ export class AllTitlesComponent implements OnInit, OnDestroy {
   }
 
   startPagination() {
-    //console.log('Starting pagination');
-    /*if (this.listStyle) {
-      paginationType = '#paginationLoaderList';
+    if (!this.listStyle) {
+      this.paginationType = '#paginationLoaderList';
     } else {
-      paginationType = '#paginationLoader';
-    }*/
+      this.paginationType = '#paginationLoader';
+    }
     this.pageController = new ScrollMagic.Controller();
     setTimeout(() => {
-      this.pageScene = new ScrollMagic.Scene({triggerElement: '#paginationLoaderList', triggerHook: 'onEnter'})
+      this.pageScene = new ScrollMagic.Scene({triggerElement: this.paginationType, triggerHook: 'onEnter'})
         .addTo(this.pageController)
         .on('enter', (e) => {
-          document.querySelector('#paginationLoaderList').classList.add('active');
+          document.querySelector(this.paginationType).classList.add('active');
           this.getMoreManga();
         });
       this.pageScene.update();

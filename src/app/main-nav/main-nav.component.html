@@ -14,7 +14,7 @@
           </button>
         </li>
         <li *ngIf="!hideMenu && section === 'recommended' || section === 'all-titles'" class="list-inline-item">
-          <button class="btn btn-primary" (click)="listStyle = !listStyle"><i class="fa" [ngClass]="{'fa-list-ol': !listStyle, 'fa-th': listStyle}"></i></button>
+          <button class="btn btn-primary" (click)="updateListStyle()"><i class="fa" [ngClass]="{'fa-list-ol': !listStyle, 'fa-th': listStyle}"></i></button>
         </li>
         <li class="list-inline-item">
           <button class="btn btn-primary" (click)="hideMenu = !hideMenu"><i class="fa fa-bars"></i> <i class="fa fa-chevron-left" [ngClass]="{'fa-chevron-left': !hideMenu, 'fa-chevron-right': hideMenu}"></i></button>

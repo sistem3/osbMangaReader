@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecommendedService } from './recommended.service';
 import { MangaDetailsService } from '../manga-details/manga-details.service';
 import { UserSettingsService } from '../settings/user-settings.service';
+import { MainNavService } from '../main-nav/main-nav.service';
 
 @Component({
   selector: 'app-recommended',
@@ -17,9 +18,13 @@ export class RecommendedComponent implements OnInit {
 
   constructor(private mangaDetails:MangaDetailsService,
               private userSettings: UserSettingsService,
+              private navService: MainNavService,
               private recommended:RecommendedService) { }
 
   ngOnInit() {
+    this.navService.listTypeStream$.subscribe(listType => {
+      this.listStyle = listType;
+    });
     this.mangaDetails.getCachedDetails();
     this.recommended.getRecommended().subscribe(
       recommended => this.setRecommended(recommended),

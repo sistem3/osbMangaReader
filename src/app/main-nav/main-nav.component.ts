@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
+import { MainNavService } from './main-nav.service';
 import { NightTimeService } from '../night-time/night-time.service';
-import { MangaViewerService } from '../manga-viewer/manga-viewer.service';
 
 @Component({
   selector: 'app-main-nav',
@@ -22,7 +22,7 @@ export class MainNavComponent implements OnInit {
   chapterTotalNumber: number;
 
   constructor(private nightTime: NightTimeService,
-              private mangaViewer: MangaViewerService,
+              private navService: MainNavService,
               private router: Router) {}
 
   ngOnInit() {
@@ -32,12 +32,17 @@ export class MainNavComponent implements OnInit {
       }
     });
 
-    this.mangaViewer.viewerSettingStream$.subscribe(settings => {
+    this.navService.viewerSettingStream$.subscribe(settings => {
       this.pageNumber = settings.page;
       this.pageTotalNumber = settings.pageTotal;
       this.chapterNumber = settings.chapter;
       this.chapterTotalNumber = settings.chapterTotal;
     });
+  }
+
+  updateListStyle() {
+    this.listStyle = !this.listStyle;
+    this.navService.updateListType(this.listStyle);
   }
 
   setNightTime() {
