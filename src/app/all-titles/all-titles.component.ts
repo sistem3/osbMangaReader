@@ -5,7 +5,6 @@ import { UserSettingsService } from '../settings/user-settings.service';
 import { MainNavService } from '../main-nav/main-nav.service';
 
 declare let ScrollMagic;
-let pageController, pageScene, paginationType;
 
 @Component({
   selector: 'app-all-titles',
