@@ -1,6 +1,20 @@
 # OsbMangaReader
 
+## Synopsis:
+
+[Angular JS](https://angular.io/) Application for reading Manga, powered by [MangaScraper API](https://market.mashape.com/doodle/manga-scraper) with content powered by [MangaReader.net](https://www.mangareader.net) (for now, will expand to other sources later). At the moment I am working on the Bookmarking system to allow users to jump around bookmarked pages within a Manga, I am also looking to create a wrapper in Electron to create a desktop application.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.2.
+
+## Demo: [Click Here](https://osbmangareader.firebaseapp.com/)
+
+## Dependencies:
+* [Angular 4](https://angular.io/)
+* [Bootstrap 4](http://getbootstrap.com)
+* [Font Awesome](http://fontawesome.io)
+* [iDangerous Swiper](http://idangero.us/swiper/)
+* [ScrollMagic](http://scrollmagic.io/)
+* [DriftZoom](https://imgix.github.io/drift/)
 
 ## Development server
 
