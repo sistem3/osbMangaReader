@@ -1,0 +1,15 @@
+<section class="mangaList container-fluid">
+  <h1>Search results for <span class="text-capitalize">{{searchTerm}}</span></h1>
+  <ul>
+    <li *ngFor="let result of searchResults" class="row">
+      <div class="col-md-2">
+        <img src="{{result.cover}}" class="img-fluid" />
+      </div>
+      <div class="col-md-10">
+        <h3>{{result.name}}</h3>
+        <p>{{result.info}}</p>
+        <button class="btn btn-primary" routerLink="/details/{{result.mangaId}}">More info <i class="fa fa-chevron-right"></i></button>
+      </div>
+    </li>
+  </ul>
+</section>

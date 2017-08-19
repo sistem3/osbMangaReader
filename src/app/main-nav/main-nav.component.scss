@@ -11,6 +11,10 @@ app-main-nav {
     -webkit-transition: margin-top .5s;
     transition: margin-top .5s;
 
+    input {
+      margin-left: 15px;
+    }
+
     &.hideMenu {
       margin-top: -65px;
 

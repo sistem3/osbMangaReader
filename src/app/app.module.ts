@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -12,6 +12,7 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { MangaDetailsComponent } from './manga-details/manga-details.component';
 
 import { MainNavService } from './main-nav/main-nav.service';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +21,13 @@ import { MainNavService } from './main-nav/main-nav.service';
     AllTitlesComponent,
     MangaViewerComponent,
     MainNavComponent,
-    MangaDetailsComponent
+    MangaDetailsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     AppRoutingModule
   ],

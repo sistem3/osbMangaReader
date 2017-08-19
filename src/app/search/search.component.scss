@@ -1,0 +1,13 @@
+.night-time {
+  app-search {
+    h1, h3, p {
+      color: $color-white;
+    }
+  }
+}
+
+app-search {
+  li {
+    margin-bottom: 20px;
+  }
+}

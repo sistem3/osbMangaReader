@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MainNavService } from './main-nav.service';
 import { NightTimeService } from '../night-time/night-time.service';
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-main-nav',
@@ -13,8 +14,10 @@ export class MainNavComponent implements OnInit {
   section:string;
   hideMenu:boolean = false;
   showMenu:boolean = true;
+  toggleSearch: boolean = false;
   isLoading:boolean = false;
   listStyle:boolean = false;
+  searchForm: FormGroup;
 
   pageNumber: number;
   pageTotalNumber: number;
@@ -26,6 +29,10 @@ export class MainNavComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {
+    this.searchForm = new FormGroup({
+      searchTerm: new FormControl('')
+    });
+
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd ) {
         this.checkSection(event.url);
@@ -61,18 +68,38 @@ export class MainNavComponent implements OnInit {
     switch (section) {
       case 'all':
         this.section = 'all';
+        this.showMenu = true;
+        this.hideMenu = false;
         break;
       case '/':
         this.section = 'recommended';
+        this.showMenu = true;
+        this.hideMenu = false;
         break;
       default:
         this.section = 'recommended';
+        this.showMenu = true;
+        this.hideMenu = false;
         break;
     }
   }
 
   toggleMenu() {
     this.showMenu = !this.showMenu;
+  }
+
+  toggleSearchInput() {
+    if (!this.toggleSearch) {
+      this.searchForm.get('searchTerm').setValue(null);
+    }
+    this.toggleSearch = true;
+    if (this.searchForm.get('searchTerm').value) {
+      const searchTerm = this.searchForm.get('searchTerm').value.split(' ').join('-');
+      if (searchTerm) {
+        this.toggleSearch = false;
+        this.router.navigateByUrl('search/' + searchTerm);
+      }
+    }
   }
 
 }
