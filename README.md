@@ -1,4 +1,4 @@
-# OsbMangaReader
+# OSB Manga Reader
 
 ## Synopsis:
 

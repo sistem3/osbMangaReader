@@ -20,10 +20,8 @@ export class SearchComponent implements OnInit {
   }
 
   getSearchDetails(termData) {
-    console.log(termData);
     this.searchTerm = termData.term;
     this.searchService.getSearchResults(this.searchTerm).subscribe((searchResults) => {
-      console.log(searchResults);
       this.searchResults = searchResults;
     });
   }
