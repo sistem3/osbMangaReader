@@ -14,7 +14,8 @@ export class RecommendedComponent implements OnInit {
   errorMessage = '';
   manga = {};
   recommendedList = [];
-  listStyle:boolean = false;
+  listStyle: boolean = false;
+  isLoading: boolean = true;
 
   constructor(private mangaDetails:MangaDetailsService,
               private userSettings: UserSettingsService,
@@ -36,6 +37,7 @@ export class RecommendedComponent implements OnInit {
       let cacheCheck = this.mangaDetails.checkCachedDetails(item.mangaId);
       if (cacheCheck) {
         this.recommendedList.push(cacheCheck);
+        this.isLoading = false;
         return false;
       }
       this.getMangaDetails(item.mangaId);
@@ -51,6 +53,7 @@ export class RecommendedComponent implements OnInit {
   setMangaDetails(manga) {
     this.recommendedList.push(manga);
     this.mangaDetails.cacheDetails(manga);
+    this.isLoading = false;
   }
 
   addFavourite(manga) {

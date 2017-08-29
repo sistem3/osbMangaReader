@@ -1,0 +1,13 @@
+.loadingIcon {
+  width: 100%;
+  font-size: 21px;
+  padding-top: 60px;
+  color: $color-white;
+  text-align: center;
+
+  i {
+    font-size: 38px;
+    position: relative;
+    top: 4px;
+  }
+}

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MangaDetailsService } from './manga-details.service';
 
 @Component({
@@ -11,13 +11,15 @@ export class MangaDetailsComponent implements OnInit {
 
   errorMessage: any;
   details: any;
-  detailsLoaded: boolean;
+  isLoading: boolean;
 
-  constructor(private route: ActivatedRoute, private mangaDetails: MangaDetailsService) { }
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private mangaDetails: MangaDetailsService) { }
 
   ngOnInit() {
     this.details = {};
-    this.detailsLoaded = false;
+    this.isLoading = true;
     this.route.params.subscribe((manga) => this.getMangaDetails(manga));
   }
 
@@ -29,7 +31,12 @@ export class MangaDetailsComponent implements OnInit {
 
   setMangaDetails(manga) {
     this.details = manga;
-    this.detailsLoaded = true;
+    this.details.chapterSelect = '0';
+    this.isLoading = false;
+  }
+
+  goToChapter() {
+    this.router.navigateByUrl('/chapter/' + this.details.href + '/' + (parseInt(this.details.chapterSelect) + 1));
   }
 
 }

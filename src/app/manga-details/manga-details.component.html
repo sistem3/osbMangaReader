@@ -1,4 +1,4 @@
-<section class="mangaTitle mangaDetails container-fluid" *ngIf="detailsLoaded">
+<section class="mangaTitle mangaDetails container-fluid" *ngIf="!isLoading">
   <article class="row">
     <div class="col-md-3 col-sm-3 col-xs-12 mainImage">
       <img [src]="details.cover" class="img-responsive center-block" />
@@ -10,9 +10,9 @@
           <nav class="form-inline">
             <label for="chapterSelect">Chapter: </label>
             <select id="chapterSelect" class="form-control" [(ngModel)]="details.chapterSelect">
-              <option *ngFor="let chapter of details.chapters; let i = index" [value]="i">{{ i }} | {{ chapter.name }}</option>
+              <option *ngFor="let chapter of details.chapters; let i = index" [value]="i">Chapter: {{ i + 1 }} | {{ chapter.name }}</option>
             </select>
-            <button class="btn btn-primary"><i class="fa fa-chevron-right"></i></button>
+            <button class="btn btn-primary" (click)="goToChapter()"><i class="fa fa-chevron-right"></i></button>
           </nav>
           <p [innerHTML]="details.info"></p>
           <h3>Genres:</h3>
@@ -28,13 +28,14 @@
             <strong>Date Released:</strong> <span [innerHTML]="details.yearOfRelease"></span>
           </p>
           <p *ngIf="details.author && details.author.length > 0">
-            <strong>Author:</strong> <span *ngFor="let author of details.author">{{ author }}</span>
+            <strong>Author:</strong> <span *ngFor="let author of details.author" class="text-capitalize">{{ author }}</span>
           </p>
           <p *ngIf="details.artist && details.artist.length > 0">
-            <strong>Artist:</strong> <span *ngFor="let artist of details.artist">{{ artist }}</span>
+            <strong>Artist:</strong> <span *ngFor="let artist of details.artist" class="text-capitalize">{{ artist }}</span>
           </p>
         </div>
       </div>
     </div>
   </article>
 </section>
+<div class="loadingIcon" *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i> Loading...</div>

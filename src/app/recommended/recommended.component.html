@@ -1,4 +1,4 @@
-<section class="mangaList container-fluid">
+<section class="mangaList container-fluid" *ngIf="!isLoading">
   <ul *ngIf="listStyle" class="list-unstyled listGrid row">
     <li *ngFor="let manga of recommendedList" class="mangaTitle">
       <article class="container-fluid">
@@ -44,3 +44,4 @@
     </li>
   </ul>
 </section>
+<div class="loadingIcon" *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i> Loading...</div>
