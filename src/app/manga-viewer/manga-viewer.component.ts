@@ -65,7 +65,10 @@ export class MangaViewerComponent implements OnInit, OnDestroy {
   onSwiperInit(swiper) {
     this.nextChapterShow = this.pageNumber == this.totalPages;
     this.prevChapterShow = this.pageNumber == 1 && this.chapterNum > 1;
+    this.navService.updateViewerDetails('page', 1);
     swiper.enableKeyboardControl();
+    swiper.slideTo(0, 0);
+    swiper.update();
   }
 
   onSwipePage(swiper) {
@@ -116,6 +119,7 @@ export class MangaViewerComponent implements OnInit, OnDestroy {
     this.isLoading = false;
 
     if (pageScene) {
+      pageScene.slideTo(0, 0);
       pageScene.destroy();
       pageScene = null;
     }
