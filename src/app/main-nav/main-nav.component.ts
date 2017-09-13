@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { MainNavService } from './main-nav.service';
 import { NightTimeService } from '../night-time/night-time.service';
-import {FormControl, FormGroup} from "@angular/forms";
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-main-nav',
