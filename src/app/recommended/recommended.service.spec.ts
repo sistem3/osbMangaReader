@@ -23,4 +23,12 @@ describe('RecommendedService', () => {
   it('should ...', inject([RecommendedService], (service: RecommendedService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should have a baseUrl', inject([RecommendedService], (service: RecommendedService) => {
+    expect(service.baseUrl).toBeTruthy();
+  }));
+
+  it('should have a baseUrl that is https://private-e00abd-osbmangareader.apiary-mock.com/topfeed', inject([RecommendedService], (service: RecommendedService) => {
+    expect(service.baseUrl).toBe('https://private-e00abd-osbmangareader.apiary-mock.com/topfeed');
+  }));
 });

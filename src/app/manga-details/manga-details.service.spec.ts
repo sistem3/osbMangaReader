@@ -23,4 +23,28 @@ describe('MangaDetailsService', () => {
   it('should ...', inject([MangaDetailsService], (service: MangaDetailsService) => {
     expect(service).toBeTruthy();
   }));
+
+  it('should have a baseUrl', inject([MangaDetailsService], (service: MangaDetailsService) => {
+    expect(service.baseUrl).toBeTruthy();
+  }));
+
+  it('should have a baseUrl that is https://doodle-manga-scraper.p.mashape.com/', inject([MangaDetailsService], (service: MangaDetailsService) => {
+    expect(service.baseUrl).toBe('https://doodle-manga-scraper.p.mashape.com/');
+  }));
+
+  it('should have a apiKey', inject([MangaDetailsService], (service: MangaDetailsService) => {
+    expect(service.apiKey).toBeTruthy();
+  }));
+
+  it('should have a apiKey that is xiQSdA9ACbmshUxnm4ZBC8nn2umSp1LeqQfjsnnVeMWHHSIQy0', inject([MangaDetailsService], (service: MangaDetailsService) => {
+    expect(service.apiKey).toBe('xiQSdA9ACbmshUxnm4ZBC8nn2umSp1LeqQfjsnnVeMWHHSIQy0');
+  }));
+
+  it('should have a defaultSite', inject([MangaDetailsService], (service: MangaDetailsService) => {
+    expect(service.defaultSite).toBeTruthy();
+  }));
+
+  it('should have a defaultSite that is mangareader.net', inject([MangaDetailsService], (service: MangaDetailsService) => {
+    expect(service.defaultSite).toBe('mangareader.net');
+  }));
 });

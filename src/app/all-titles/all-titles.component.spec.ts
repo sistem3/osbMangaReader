@@ -48,4 +48,32 @@ describe('AllTitlesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have an error message string', () => {
+    expect(component.errorMessage).toBe('');
+  });
+
+  it('should have a list type set to false', () => {
+    expect(component.listStyle).toBeFalsy();
+  });
+
+  it('should have a page length', () => {
+    expect(component.pageLength).toBeTruthy();
+  });
+
+  it('should have a default page length of twenty', () => {
+    expect(component.pageLength).toBe(20);
+  });
+
+  it('should have a page number', () => {
+    expect(component.page).toBeTruthy();
+  });
+
+  it('should have a default page number of one', () => {
+    expect(component.page).toBe(1);
+  });
+
+  it('should have a pagination type id', () => {
+    expect(component.paginationType).toBe('#paginationLoaderList');
+  });
 });
